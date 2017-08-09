@@ -21,5 +21,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Models\LoginRequest.cs" />
+    <Compile Remove="Data\ALittleExtraContext.cs" />
   </ItemGroup>
 </Project>
