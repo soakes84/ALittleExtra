@@ -1,10 +1,7 @@
 ﻿using System;
 namespace ALittleExtra.Data
 {
-    public class ApplicationUser
+    public class ApplicationUser 
     {
-        public ApplicationUser()
-        {
-        }
     }
 }
