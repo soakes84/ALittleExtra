@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using ALittleExtra.Data;
+using ALittleExtra.Models;
 
 namespace ALittleExtra
 {
@@ -28,12 +30,30 @@ namespace ALittleExtra
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            var context = ALittleExtraContext();
+            context.Database.Migrate();
+
+            services.AddDbContext<AlittleExtraContext>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 2;
+            })
+            .AddEntityFrameworkStores<ALittleExtraContext>()
+            .AddDefaultTokenProviders();
+
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.SeedData();
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -46,6 +66,10 @@ namespace ALittleExtra
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseIdentity();
+
+            app.UseDefaultFiles();
 
             app.UseStaticFiles();
 

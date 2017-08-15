@@ -3,5 +3,6 @@ namespace ALittleExtra.Data
 {
     public class ApplicationUser 
     {
+        
     }
 }
