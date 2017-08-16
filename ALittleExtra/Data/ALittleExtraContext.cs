@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace ALittleExtra.Data
 {
@@ -14,11 +17,6 @@ namespace ALittleExtra.Data
 		public DbSet<Vegetables> Vegetables { get; set; }
 		public DbSet<HighPriority> HighPriority { get; set; }
 		public DbSet<LowPriority> LowPriority { get; set; }
-
-		public ALittleMoreContext() : base()
-        {
-
-		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{

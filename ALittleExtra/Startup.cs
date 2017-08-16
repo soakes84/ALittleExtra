@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ALittleExtra.Data;
 using ALittleExtra.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace ALittleExtra
 {
@@ -30,10 +31,10 @@ namespace ALittleExtra
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            var context = ALittleExtraContext();
-            context.Database.Migrate();
+            var context = new ALittleExtraContext();
+            //context.Database.Migrate();
 
-            services.AddDbContext<AlittleExtraContext>();
+            services.AddDbContext<ALittleExtraContext>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -52,7 +53,7 @@ namespace ALittleExtra
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.SeedData();
+           // app.SeedData();
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();

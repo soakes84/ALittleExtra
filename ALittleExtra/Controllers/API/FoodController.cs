@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ALittleExtra.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -42,7 +44,7 @@ namespace ALittleExtra.Controllers.API
 		// all food a particular store has donated
 		[HttpGet]
         [Route("~/api/totalfood/{id}")]
-        public async Task<IAsyncResult> GetSingleStoreUserTotalFood(int id)
+        public async Task<IActionResult> GetSingleStoreUserTotalFood(int id)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -50,15 +52,15 @@ namespace ALittleExtra.Controllers.API
 			}
 
 			var userId = _userManager.GetUserId(User);
-            StoreUser storeUser = await _context.TotalFood
+            TotalFood totalFood = await _context.TotalFood
 				.SingleOrDefaultAsync(p => p.Id == id);
 
-			if (storeUser == null)
+            if (totalFood == null)
 			{
                 return NotFound(id);
 			}
 
-            return Ok(storeUser);
+            return Ok(totalFood);
 		}
 
 		// all boxfood from all users

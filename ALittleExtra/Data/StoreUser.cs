@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+
 namespace ALittleExtra.Data
 {
     public class StoreUser : IdentityUser

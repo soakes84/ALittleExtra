@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ALittleExtra.Data;
 using ALittleExtra.Models;
+using Microsoft.AspNetCore.Identity;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,7 +14,7 @@ namespace ALittleExtra.Controllers.API
     [Route("api/[controller]")]
     public class AccountsController : Controller
     {
-        public SignInManager<AppicationUser> SignInManager { get; set; }
+        public SignInManager<ApplicationUser> SignInManager { get; set; }
         public UserManager<ApplicationUser> UserManager { get; set; }
 
         public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
