@@ -1,35 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 
 namespace ALittleExtra.Data
 {
-    // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class ALittleExtraContext
-    {
-        private readonly RequestDelegate _next;
+	public class ALittleExtraContext : IdentityDbContext<ApplicationUser>
+	{
+		public DbSet<TotalFood> TotalFood { get; set; }
+		public DbSet<BoxFood> BoxFood { get; set; }
+		public DbSet<CanFood> CanFood { get; set; }
+		public DbSet<Fruit> Fruit { get; set; }
+		public DbSet<Meat> Meat { get; set; }
+		public DbSet<Vegetables> Vegetables { get; set; }
+		public DbSet<HighPriority> HighPriority { get; set; }
+		public DbSet<LowPriority> LowPriority { get; set; }
 
-        public ALittleExtraContext(RequestDelegate next)
+		public ALittleMoreContext() : base()
         {
-            _next = next;
-        }
 
-        public Task Invoke(HttpContext httpContext)
-        {
+		}
 
-            return _next(httpContext);
-        }
-    }
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.UseSqlite(@"Data Source=ALittleExtra.db");
+			base.OnConfiguring(optionsBuilder);
+		}
 
-    // Extension method used to add the middleware to the HTTP request pipeline.
-    public static class ALittleExtraContextExtensions
-    {
-        public static IApplicationBuilder UseMiddlewareClassTemplate(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<ALittleExtraContext>();
-        }
-    }
+		protected override void OnModelCreating(ModelBuilder builder)
+		{
+			base.OnModelCreating(builder);
+
+			builder.Entity<ApplicationUser>()
+				.ToTable("Users");
+			builder.Entity<IdentityRole>()
+				.ToTable("Roles");
+			builder.Entity<IdentityRoleClaim<string>>()
+				.ToTable("RoleClaims");
+			builder.Entity<IdentityUserClaim<string>>()
+				.ToTable("UserClaims");
+			builder.Entity<IdentityUserLogin<string>>()
+				.ToTable("UserLogins");
+			builder.Entity<IdentityUserRole<string>>()
+				.ToTable("UserRoles");
+			builder.Entity<IdentityUserToken<string>>()
+				.ToTable("UserTokens");
+
+		}
+	}
 }
