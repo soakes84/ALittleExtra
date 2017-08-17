@@ -148,8 +148,6 @@ namespace ALittleExtra.Controllers.API
             return _context.Vegetables.Where(q => q.UserName == userName).ToList();
 		}
 
-
-
         // storeuser posting their food items
         [HttpPost]
         [Route("~/api/totalfood")]

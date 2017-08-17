@@ -31,7 +31,7 @@ namespace ALittleExtra
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            var context = new ALittleExtraContext();
+          //  var context = new ALittleExtraContext();
             //context.Database.Migrate();
 
             services.AddDbContext<ALittleExtraContext>();

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace ALittleExtra.Data
 {
@@ -15,9 +16,7 @@ namespace ALittleExtra.Data
 		public DbSet<Fruit> Fruit { get; set; }
 		public DbSet<Meat> Meat { get; set; }
 		public DbSet<Vegetables> Vegetables { get; set; }
-		public DbSet<HighPriority> HighPriority { get; set; }
-		public DbSet<LowPriority> LowPriority { get; set; }
-
+	
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseSqlite(@"Data Source=ALittleExtra.db");
