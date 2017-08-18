@@ -210,6 +210,22 @@ namespace ALittleExtra.Controllers.API
                         veggies.TimeStamp = DateTime.UtcNow;
                         _context.Vegetables.Add(veggies);
                     }
+                    else if (item.Type == "Dairy")
+					{
+						var dairy = new Dairy();
+                        dairy.Owner = user;
+                        dairy.UserName = user.UserName;
+                        dairy.TimeStamp = DateTime.UtcNow;
+						_context.Dairy.Add(dairy);
+					}
+                    else if (item.Type == "Drinks")
+					{
+                        var drinks = new Drinks();
+                        drinks.Owner = user;
+                        drinks.UserName = user.UserName;
+                        drinks.TimeStamp = DateTime.UtcNow;
+                        _context.Drinks.Add(drinks);
+					}
                 }
 
                 item.Quantity = 0;
