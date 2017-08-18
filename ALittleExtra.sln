@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALittleExtra", "ALittleExtra\ALittleExtra.csproj", "{E75A8F41-5BBE-47E2-8DFE-9F00354E7ABC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALittleExtra", "ALittleExtra\ALittleExtra.csproj", "{AF9A1D2B-2DAB-425E-86E1-25AD210C99EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +9,5 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E75A8F41-5BBE-47E2-8DFE-9F00354E7ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E75A8F41-5BBE-47E2-8DFE-9F00354E7ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E75A8F41-5BBE-47E2-8DFE-9F00354E7ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E75A8F41-5BBE-47E2-8DFE-9F00354E7ABC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

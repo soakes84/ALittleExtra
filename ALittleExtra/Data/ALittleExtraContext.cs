@@ -16,6 +16,8 @@ namespace ALittleExtra.Data
 		public DbSet<Fruit> Fruit { get; set; }
 		public DbSet<Meat> Meat { get; set; }
 		public DbSet<Vegetables> Vegetables { get; set; }
+        public DbSet<Drinks> Drinks { get; set; }
+        public DbSet<Dairy> Dairy { get; set; }
 	
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using ALittleExtra.Data;
 using ALittleExtra.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ALittleExtra
 {
@@ -19,7 +20,7 @@ namespace ALittleExtra
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -31,8 +32,8 @@ namespace ALittleExtra
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-          //  var context = new ALittleExtraContext();
-            //context.Database.Migrate();
+            var context = new ALittleExtraContext();
+            context.Database.Migrate();
 
             services.AddDbContext<ALittleExtraContext>();
 
