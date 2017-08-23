@@ -14,19 +14,24 @@ namespace ALittleExtra
             var userManager = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
             var storeManager = app.ApplicationServices.GetRequiredService<UserManager<StoreUser>>();
 
-            var user = await userManager.FindByEmailAsync("food@food.com");
-            if (user == null)
+            var appUser = await userManager.FindByEmailAsync("food@food.com");
+            if (appUser == null)
             {
-				user = new ApplicationUser();
-				user.Email = "food@food.com";
-				user.UserName = "Foodie123";
-				await userManager.CreateAsync(user, "Testtest1");
+				appUser = new ApplicationUser();
+				appUser.Email = "food@food.com";
+				appUser.UserName = "Foodie123";
+				await userManager.CreateAsync(appUser, "Testtest1");
+
+				var user = new StoreUser();
+				user.Email = "store@store.com";
+				user.UserName = "Ukrops";
+                await storeManager.CreateAsync(user, "Testtest1");
 
                 var food = new TotalFood() { Type = "Meat" };
                 food.UserName = user.UserName;
                 user.TotalFood.Add(food);
                 var meat = new Meat();
-				meat.Owner = user;
+                meat.Owner = user;
                 meat.UserName = user.UserName;
                 meat.Name = "T-Bone Steak";
                 context.Meat.Add(meat);
@@ -94,10 +99,6 @@ namespace ALittleExtra
                 dairy1.Name = "Swiss Cheese";
                 context.Dairy.Add(dairy1);
 
-				var storeUser = new StoreUser();
-                storeUser.Email = "store@store.com";
-                storeUser.UserName = "Ukrops";
-                await storeManager.CreateAsync(storeUser, "Testtest1");
             }
         }
     }

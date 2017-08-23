@@ -14,10 +14,10 @@ namespace ALittleExtra.Controllers.API
     [Route("api/[controller]")]
     public class AccountsController : Controller
     {
-        public SignInManager<ApplicationUser> SignInManager { get; set; }
-        public UserManager<ApplicationUser> UserManager { get; set; }
+        public SignInManager<StoreUser> SignInManager { get; set; }
+        public UserManager<StoreUser> UserManager { get; set; }
 
-        public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountsController(UserManager<StoreUser> userManager, SignInManager<StoreUser> signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -53,7 +53,7 @@ namespace ALittleExtra.Controllers.API
         [Route("~/api/accounts/register")]
         public async Task<IActionResult> Register([FromBody]RegisterRequest model)
         {
-            var user = new ApplicationUser();
+            var user = new StoreUser();
             user.Email = model.Email;
             user.UserName = model.UserName;
 

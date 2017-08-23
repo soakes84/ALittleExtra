@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace ALittleExtra.Data
 {
-	public class ALittleExtraContext : IdentityDbContext<ApplicationUser>
+	public class ALittleExtraContext : IdentityDbContext<StoreUser>
 	{
 		public DbSet<TotalFood> TotalFood { get; set; }
 		public DbSet<BoxFood> BoxFood { get; set; }
@@ -29,7 +29,7 @@ namespace ALittleExtra.Data
 		{
 			base.OnModelCreating(builder);
 
-			builder.Entity<ApplicationUser>()
+			builder.Entity<StoreUser>()
 				.ToTable("Users");
 			builder.Entity<IdentityRole>()
 				.ToTable("Roles");

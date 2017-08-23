@@ -16,9 +16,9 @@ namespace ALittleExtra.Controllers.API
     public class FoodController : Controller
     {
         private readonly ALittleExtraContext _context;
-        private UserManager<ApplicationUser> _userManager { get; set; }
+        private UserManager<StoreUser> _userManager { get; set; }
 
-        public FoodController(UserManager<ApplicationUser> userManager, ALittleExtraContext context)
+        public FoodController(UserManager<StoreUser> userManager, ALittleExtraContext context)
         {
             _userManager = userManager;
             _context = context;
