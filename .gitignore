@@ -6,8 +6,8 @@
 [Bb]in/
 packages/
 TestResults/
-node_modules
-./AlittleExtra/src-client/node_modules
+
+
 # globs
 Makefile.in
 *.DS_Store
