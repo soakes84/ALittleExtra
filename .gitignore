@@ -6,11 +6,7 @@
 [Bb]in/
 packages/
 TestResults/
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 702a4da6e6405f29b6ccbbe6425daabb6b0afc2c
+node_modules
 # globs
 Makefile.in
 *.DS_Store
