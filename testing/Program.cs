@@ -19,7 +19,7 @@ namespace testing
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .UseWebRoot("src-client/public")
+           // .UseWebRoot("src-client/public")
                 .UseStartup<Startup>()
                 .Build();
     }
