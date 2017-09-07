@@ -44,7 +44,7 @@ export default class Login extends Component {
 
          >
                {(styles) => (
-                  <div className="grid-x" style={{width: '100vw', height: '100vh', flexFlow: 'nowrap'}}>
+                  <div className="grid-y" style={{width: '100vw', height: '100vh', flexFlow: 'nowrap', flexDirection: 'column'}}>
                      <Box bgColor={colors[0]} width={styles[0].width} />
                      <Box bgColor={colors[1]} width={styles[1].width} />
                      <Box bgColor={colors[2]} width={styles[2].width} />
