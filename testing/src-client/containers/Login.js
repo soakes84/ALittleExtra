@@ -20,9 +20,11 @@ const Box = (props) => {
 }
 const LoginWrapper = (props) => {
    return (
-      <div className="columns small-12 main-green">
-         <h3>Welcome to Muncher!</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit ab iste officiis dolore eum, esse eveniet obcaecati aspernatur accusamus facilis nulla culpa nostrum reiciendis sapiente, veniam soluta, nemo in id.</p>
+      <div className="columns small-12 main-bg grid-x align-middle align-center">
+         <div className="header-content small-5 columns text-center">
+            <h3>Muncher</h3>
+            <p>Connecting Nonprofits with Local food Sources</p>
+         </div>
       </div>
    )
 }
