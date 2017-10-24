@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Asap:700|Open+Sans:400,400i,700,700i');
+body{
+  font-family: "Open Sans", sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: "Asap", serif;
+}
+.text-shadow {
+  transition: all 5s ease-in;
+  text-shadow: 1px 5px 1px rgba(155, 155, 155, 0.7)
+}
