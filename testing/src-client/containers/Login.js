@@ -20,8 +20,8 @@ const Box = (props) => {
 const LoginWrapper = (props) => {
    return (
       <div className="columns small-12 main-bg grid-x align-center text-center">
-        <h1 className="logo">a.LittlExtra</h1>
-         <div className="header-content small-5 columns text-center">
+         <div className="header-content columns text-center">
+           <h1 className="logo">a.LittlExtra</h1>
             <p>Connecting Nonprofits with Local food Sources</p>
             <button className="button button-round">Login</button>
          </div>

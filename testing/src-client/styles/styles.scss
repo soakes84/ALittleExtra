@@ -11,17 +11,21 @@
 .logo{
   color: #FFF;
   animation: 1.7s easeIn;
-  font-size: 3em;
+  font-size: 6em;
+}
+button:focus{
+  outline: none;
 }
 
 .header-content {
   color: #FFF;
-  padding: 10px;
+
+  padding: 10% 10px 0;
   margin-bottom: 10px;
    p{
      opacity: .9;
      animation: 2s easeIn;
-     font-size: 18px;
+     font-size: 1.6em;
    }
    h1{
 
