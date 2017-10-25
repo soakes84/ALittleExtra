@@ -327,8 +327,6 @@ namespace testing.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
                     b.Property<string>("OwnerId");
 
                     b.Property<DateTime>("TimeStamp");

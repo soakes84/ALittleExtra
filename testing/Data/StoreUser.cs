@@ -7,6 +7,7 @@ namespace testing.Data
     public class StoreUser : IdentityUser
     { 
         public List<TotalFood> TotalFood { get; set; }
+        public string Location { get; set; }
 
         public StoreUser()
         {

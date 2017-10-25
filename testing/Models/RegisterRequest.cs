@@ -14,5 +14,9 @@ namespace testing.Models
         public string UserName { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public string Location { get; set; }
+        [Required]
+        public Boolean IsStore { get; set; }
     }
 }

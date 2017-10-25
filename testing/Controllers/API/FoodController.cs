@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace testing.Controllers.API
 {
-    [Route("api/[controller]")]
+    [Produces("application/json")]
     public class FoodController : Controller
     {
         private readonly ALittleExtraContext _context;
@@ -150,7 +150,7 @@ namespace testing.Controllers.API
 
         // storeuser posting their food items
         [HttpPost]
-        [Route("~/api/totalfood")]
+        [Route("~/api/food/totalfood")]
         [Authorize]
         public async Task<IActionResult> PostFood([FromBody] List<TotalFood> food)
         {
