@@ -17,6 +17,6 @@ namespace testing.Models
         [Required]
         public string Location { get; set; }
         [Required]
-        public Boolean IsStore { get; set; }
+        public bool IsStore { get; set; }
     }
 }

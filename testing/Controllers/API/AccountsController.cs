@@ -13,18 +13,14 @@ namespace testing.Controllers.API
     [Produces("application/json")]
     public class AccountsController : Controller
     {
-        public SignInManager<StoreUser> SignInManager { get; set; }
-        public UserManager<StoreUser> UserManager { get; set; }
-        public UserManager<ApplicationUser> ApplicationManager { get; set; }
-        public SignInManager<ApplicationUser> SignInStore { get; set; }
+        public SignInManager<ApplicationUser> SignInManager { get; set; }
+        public UserManager<ApplicationUser> UserManager { get; set; }
 
-        public AccountsController(UserManager<StoreUser> userManager, SignInManager<StoreUser> signInManager,
-                                  UserManager<ApplicationUser> applicationManager, SignInManager<ApplicationUser> signInBank)
+
+        public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            ApplicationManager = applicationManager;
-            SignInStore = signInBank;
 
         }
 
@@ -33,13 +29,14 @@ namespace testing.Controllers.API
         public async Task<IActionResult> StoreLogin ([FromBody]LoginRequest model)
 		{
             var user = await UserManager.FindByEmailAsync(model.Email);
+            var storeUser = user.FoodBankUsers.Find(q => q.Email == user.Email);
 
             if (user != null)
             {
                 var result = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
                 if(result.Succeeded)
                 {
-                    return Ok(new { IsAuthenticated = true, Name = user.Email });
+                    return Ok(new { IsAuthenticated = true, Name = user.UserName, Location = user.Location, Email = user.Email, IsStore = user.IsStore  });
                 }
                 else{
                     return Ok(new { IsAuthenticated = false });
@@ -55,11 +52,11 @@ namespace testing.Controllers.API
         [Route("~/api/accounts/bank/login")]
         public async Task<IActionResult> BankLogin ([FromBody]LoginRequest model)
         {
-            var user = await ApplicationManager.FindByEmailAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
 
             if (user != null)
             {
-                var result = await SignInStore.PasswordSignInAsync(user, model.Password, false, true);
+                var result = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
                 if (result.Succeeded)
                 {
                     return Ok(new { IsAuthenticated = true, Name = user.Email });
@@ -80,13 +77,15 @@ namespace testing.Controllers.API
         [Route("~/api/accounts/register")]
         public async Task<IActionResult> Register([FromBody]RegisterRequest model)
         {
-            if(model.IsStore)
-            {
-                var user = new StoreUser();
-                user.Email = model.Email;
-                user.UserName = model.UserName;
-                user.Location = model.Location;
+            
+            var user = new ApplicationUser();
+            user.Email = model.Email;
+            user.UserName = model.UserName;
+            user.Location = model.Location;
+            user.IsStore = model.IsStore;
 
+            if(model.IsStore == true)
+            {
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
@@ -97,15 +96,12 @@ namespace testing.Controllers.API
                 else
                 {
                     return BadRequest();
-                }      
+                }
             }
             else
             {
-                var user = new ApplicationUser();
-                user.Email = model.Email;
-                user.UserName = model.UserName;
 
-                var result = await ApplicationManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
@@ -116,6 +112,7 @@ namespace testing.Controllers.API
                     return BadRequest();
                 }
             }
+     
         }
 
 		[HttpGet]

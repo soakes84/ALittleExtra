@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace testing.Data
 {
-	public class ALittleExtraContext : IdentityDbContext<StoreUser>
+    public class ALittleExtraContext : IdentityDbContext<ApplicationUser>
 	{
 		public DbSet<TotalFood> TotalFood { get; set; }
 		public DbSet<BoxFood> BoxFood { get; set; }
@@ -30,7 +30,7 @@ namespace testing.Data
 		{
 			base.OnModelCreating(builder);
 
-			builder.Entity<StoreUser>()
+            builder.Entity<ApplicationUser>()
 				.ToTable("Users");
 			builder.Entity<IdentityRole>()
 				.ToTable("Roles");
@@ -44,7 +44,7 @@ namespace testing.Data
 				.ToTable("UserRoles");
 			builder.Entity<IdentityUserToken<string>>()
 				.ToTable("UserTokens");
-
+            
 		}
 	}
 }

@@ -126,6 +126,60 @@ namespace testing.Migrations
                     b.ToTable("UserTokens");
                 });
 
+            modelBuilder.Entity("testing.Data.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("IsStore");
+
+                    b.Property<string>("Location");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("testing.Data.BoxFood", b =>
                 {
                     b.Property<int>("Id")
@@ -198,6 +252,52 @@ namespace testing.Migrations
                     b.ToTable("Drinks");
                 });
 
+            modelBuilder.Entity("testing.Data.FoodBankUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccessFailedCount");
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("IsStore");
+
+                    b.Property<string>("Location");
+
+                    b.Property<bool>("LockoutEnabled");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("NormalizedEmail");
+
+                    b.Property<string>("NormalizedUserName");
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("SecurityStamp");
+
+                    b.Property<bool>("TwoFactorEnabled");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("FoodBankUser");
+                });
+
             modelBuilder.Entity("testing.Data.Fruit", b =>
                 {
                     b.Property<int>("Id")
@@ -241,13 +341,15 @@ namespace testing.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                    b.Property<string>("ApplicationUserId");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
+                    b.Property<string>("ConcurrencyStamp");
+
+                    b.Property<string>("Email");
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("IsStore");
 
                     b.Property<string>("Location");
 
@@ -255,11 +357,9 @@ namespace testing.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
+                    b.Property<string>("NormalizedEmail");
 
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
+                    b.Property<string>("NormalizedUserName");
 
                     b.Property<string>("PasswordHash");
 
@@ -271,25 +371,23 @@ namespace testing.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
+                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                    b.HasIndex("ApplicationUserId");
 
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex");
-
-                    b.ToTable("Users");
+                    b.ToTable("StoreUser");
                 });
 
             modelBuilder.Entity("testing.Data.TotalFood", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("FoodBankUserId");
 
                     b.Property<int>("Quantity");
 
@@ -304,6 +402,10 @@ namespace testing.Migrations
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("FoodBankUserId");
 
                     b.HasIndex("StoreUserId");
 
@@ -340,7 +442,7 @@ namespace testing.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("testing.Data.StoreUser")
+                    b.HasOne("testing.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -348,7 +450,7 @@ namespace testing.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("testing.Data.StoreUser")
+                    b.HasOne("testing.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -361,7 +463,7 @@ namespace testing.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("testing.Data.StoreUser")
+                    b.HasOne("testing.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -369,7 +471,7 @@ namespace testing.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("testing.Data.StoreUser")
+                    b.HasOne("testing.Data.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -403,6 +505,13 @@ namespace testing.Migrations
                         .HasForeignKey("OwnerId");
                 });
 
+            modelBuilder.Entity("testing.Data.FoodBankUser", b =>
+                {
+                    b.HasOne("testing.Data.ApplicationUser")
+                        .WithMany("FoodBankUsers")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("testing.Data.Fruit", b =>
                 {
                     b.HasOne("testing.Data.StoreUser", "Owner")
@@ -417,8 +526,23 @@ namespace testing.Migrations
                         .HasForeignKey("OwnerId");
                 });
 
+            modelBuilder.Entity("testing.Data.StoreUser", b =>
+                {
+                    b.HasOne("testing.Data.ApplicationUser")
+                        .WithMany("StoreUsers")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
             modelBuilder.Entity("testing.Data.TotalFood", b =>
                 {
+                    b.HasOne("testing.Data.ApplicationUser")
+                        .WithMany("TotalFood")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("testing.Data.FoodBankUser")
+                        .WithMany("TotalFood")
+                        .HasForeignKey("FoodBankUserId");
+
                     b.HasOne("testing.Data.StoreUser")
                         .WithMany("TotalFood")
                         .HasForeignKey("StoreUserId");

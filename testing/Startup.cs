@@ -36,7 +36,7 @@ namespace testing
 
 	           services.AddDbContext<ALittleExtraContext>();
 
-				services.AddIdentity<StoreUser, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 				{
 					options.Password.RequireUppercase = false;
 					options.Password.RequireLowercase = false;
@@ -50,34 +50,35 @@ namespace testing
 	           services.AddMvc();
 	       }
 
-	       // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-	       public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-	       {
-	           //app.SeedData();
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            //app.SeedData();
 
-	           loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-	           loggerFactory.AddDebug();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
-	           if (env.IsDevelopment())
-	           {
-	               app.UseDeveloperExceptionPage();
-	               app.UseBrowserLink();
-	           }
-	           else
-	           {
-	               app.UseExceptionHandler("/Home/Error");
-	           }
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
 
-	           app.UseDefaultFiles();
+            app.UseDefaultFiles();
 
-	           app.UseStaticFiles();
+            app.UseStaticFiles();
 
-	           app.UseMvc(routes =>
-	           {
-	               routes.MapRoute(
-	                   name: "default",
-	                   template: "{controller=Home}/{action=Index}/{id?}");
-	           });
-	       }
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+        }
+
 	   }
 }
