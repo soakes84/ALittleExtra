@@ -131,8 +131,6 @@ namespace testing.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
                     b.Property<string>("OwnerId");
 
                     b.Property<DateTime>("TimeStamp");
@@ -150,8 +148,6 @@ namespace testing.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("OwnerId");
 
@@ -171,8 +167,6 @@ namespace testing.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
                     b.Property<string>("OwnerId");
 
                     b.Property<DateTime>("TimeStamp");
@@ -190,8 +184,6 @@ namespace testing.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("OwnerId");
 
@@ -211,8 +203,6 @@ namespace testing.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
                     b.Property<string>("OwnerId");
 
                     b.Property<DateTime>("TimeStamp");
@@ -230,8 +220,6 @@ namespace testing.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("OwnerId");
 
@@ -260,6 +248,8 @@ namespace testing.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("Location");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -326,8 +316,6 @@ namespace testing.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("OwnerId");
 

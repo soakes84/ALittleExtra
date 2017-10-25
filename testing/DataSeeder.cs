@@ -33,7 +33,6 @@ namespace testing
 				var meat = new Meat();
 				meat.Owner = user;
 				meat.UserName = user.UserName;
-				meat.Name = "T-Bone Steak";
 				context.Meat.Add(meat);
 
 				var food1 = new TotalFood() { Type = "Meat" };
@@ -42,7 +41,6 @@ namespace testing
 				var meat1 = new Meat();
 				meat1.Owner = user;
 				meat1.UserName = user.UserName;
-				meat1.Name = "Pork";
 				context.Meat.Add(meat1);
 
 				var food2 = new TotalFood() { Type = "Meat" };
@@ -51,7 +49,6 @@ namespace testing
 				var meat2 = new Meat();
 				meat2.Owner = user;
 				meat2.UserName = user.UserName;
-				meat2.Name = "Chicken Breasts";
 				context.Meat.Add(meat2);
 
 				var food3 = new TotalFood() { Type = "Fruit" };
@@ -60,7 +57,6 @@ namespace testing
 				var fruit = new Fruit();
 				fruit.Owner = user;
 				fruit.UserName = user.UserName;
-				fruit.Name = "Strawberries";
 				context.Fruit.Add(fruit);
 
 				var food4 = new TotalFood() { Type = "Fruit" };
@@ -69,7 +65,6 @@ namespace testing
 				var fruit1 = new Fruit();
 				fruit1.Owner = user;
 				fruit1.UserName = user.UserName;
-				fruit1.Name = "Strawberries";
 				context.Fruit.Add(fruit1);
 
 				var food5 = new TotalFood() { Type = "CanFood" };
@@ -78,7 +73,6 @@ namespace testing
 				var canFood = new CanFood();
 				canFood.Owner = user;
 				canFood.UserName = user.UserName;
-				canFood.Name = "Chicken Noodle Soup";
 				context.CanFood.Add(canFood);
 
 				var food6 = new TotalFood() { Type = "Dairy" };
@@ -87,7 +81,6 @@ namespace testing
 				var dairy = new Dairy();
 				dairy.Owner = user;
 				dairy.UserName = user.UserName;
-				dairy.Name = "String Cheese";
 				context.Dairy.Add(dairy);
 
 				var food7 = new TotalFood() { Type = "Dairy" };
@@ -96,7 +89,6 @@ namespace testing
 				var dairy1 = new Dairy();
 				dairy1.Owner = user;
 				dairy1.UserName = user.UserName;
-				dairy1.Name = "Swiss Cheese";
 				context.Dairy.Add(dairy1);
 
 			}
