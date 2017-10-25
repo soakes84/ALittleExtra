@@ -3,10 +3,9 @@ import { StaggeredMotion, spring } from 'react-motion';
 
 
 const colors = [
-   '#B9F6CA',
-   '#69F0AE',
-   '#00E676',
-   '#00C853'
+   '#39f1c4',
+   '#31ddb3',
+   '#2ccba4'
 ]
 
 const Box = (props) => {
@@ -20,10 +19,11 @@ const Box = (props) => {
 }
 const LoginWrapper = (props) => {
    return (
-      <div className="columns small-12 main-bg grid-x align-middle align-center">
-         <div className="header-content small-5 columns text-center">
-            <h3>Muncher</h3>
+      <div className="columns small-12 main-bg grid-x align-center text-center">
+         <div className="header-content columns text-center">
+           <h1 className="logo">a.LittlExtra</h1>
             <p>Connecting Nonprofits with Local food Sources</p>
+            <button className="button button-round">Login</button>
          </div>
       </div>
    )

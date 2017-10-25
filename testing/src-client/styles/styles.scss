@@ -1,3 +1,34 @@
-h1{
-   background: blue;
+@import './_typography.scss';
+@import './_animations.scss';
+.main-bg{
+  background: #27B894;
+.button-round{
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(to bottom, rgba(20,98,255,1) 0%, rgba(63,81,181,1) 100%);
+
+}
+.logo{
+  color: #FFF;
+  animation: 1.7s easeIn;
+  font-size: 6em;
+}
+button:focus{
+  outline: none;
+}
+
+.header-content {
+  color: #FFF;
+
+  padding: 10% 10px 0;
+  margin-bottom: 10px;
+   p{
+     opacity: .9;
+     animation: 2s easeIn;
+     font-size: 1.6em;
+   }
+   h1{
+
+   }
+}
 }
