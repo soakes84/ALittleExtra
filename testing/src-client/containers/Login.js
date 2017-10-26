@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StaggeredMotion, spring } from "react-motion";
-
+import axios from 'axios';
 import ModalWrapper from "../components/ModalWrapper";
 
 const colors = ["#39f1c4", "#31ddb3", "#2ccba4"];
@@ -28,14 +28,31 @@ export default class Login extends Component {
   constructor(){
     super();
     this.state = {
-      showModal: false
+      email: '',
+      password: ''
     }
   }
-  _toggleModal = (evt) => {
-    evt.preventDefault();
-    const showModal = !this.state.showModal
-      this.setState({ showModal })
+  _onEmailChange = (evt) => {
+    this.setState({ email: evt.target.value})
+  }
 
+  _onPasswordChange = (evt) => {
+    this.setState({password: evt.target.value})
+  }
+  _handleSubmit = (evt) => {
+    evt.preventDefault();
+    // 'localhost:8080/login'
+    axios.post('/api/accounts/login', {
+      email: this.state.email,
+      password: this.state.password
+    })
+    .then(response => {
+      window.localStorage.setItem('user', JSON.stringify(response.data))
+      this.props.history.push('/home')
+    })
+    .catch(response => {
+      console.log('invalid email');
+    })
   }
 
   render() {
@@ -66,17 +83,17 @@ export default class Login extends Component {
               <div className="header-content columns text-center">
                 <h1 className="logo">a.LittlExtra</h1>
                 <p>Connecting Nonprofits with Local food Sources</p>
-                <form>
+                <form onSubmit={this._handleSubmit}>
                   <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                       <div className="medium-6 cell">
                         <label>Email
-                          <input type="email" onChange={this.onChange} placeholder="Email"/>
+                          <input value={this.state.email} type="email" onChange={this._onEmailChange} placeholder="Email"/>
                         </label>
                       </div>
                       <div className="medium-6 cell">
                         <label>Password
-                          <input type="password" onChange={this.onChange} placeholder="Password"/>
+                          <input value={this.state.password} type="password" onChange={this._onPasswordChange} placeholder="Password"/>
                         </label>
                       </div>
                     </div>
