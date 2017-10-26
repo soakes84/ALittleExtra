@@ -15,12 +15,13 @@ namespace testing.Controllers.API
     {
         public SignInManager<ApplicationUser> SignInManager { get; set; }
         public UserManager<ApplicationUser> UserManager { get; set; }
+        private readonly ALittleExtraContext _context;
 
-
-        public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager )
+        public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ALittleExtraContext context )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _context = context;
 
         }
 
@@ -46,8 +47,6 @@ namespace testing.Controllers.API
                 return BadRequest();
             }
 		}
-
-
    
         [HttpPost]
         [Route("~/api/accounts/register")]
@@ -99,5 +98,13 @@ namespace testing.Controllers.API
 
             return Ok();
 		}
+
+        [HttpGet]
+        [Route("~/api/accounts/stores")]
+        public IEnumerable<ApplicationUser> GetFoodStores()
+        {
+           return _context.Users.Where(q => q.IsStore == true).ToList();
+        
+        }
     }
 }

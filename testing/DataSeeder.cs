@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using testing.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -16,15 +17,19 @@ namespace testing
 			var appUser = await userManager.FindByEmailAsync("food@food.com");
 			if (appUser == null)
 			{
-				//appUser = new ApplicationUser();
-				//appUser.Email = "food@food.com";
-				//appUser.UserName = "Foodie123";
-				//await userManager.CreateAsync(appUser, "Testtest1");
+				appUser = new ApplicationUser();
+				appUser.Email = "food@food.com";
+				appUser.UserName = "Foodie123";
+                appUser.Location = "17A Princess St, Charleston, SC, 29401";
+                appUser.IsStore = false;
+				await userManager.CreateAsync(appUser, "Testtest1");
 
-				//var user = new StoreUser();
+				//var user = new ApplicationUser();
 				//user.Email = "store@store.com";
-				//user.UserName = "Ukrops";
-				//await storeManager.CreateAsync(user, "Testtest1");
+				//user.UserName = "Bilo Folly";
+    //            user.IsStore = true;
+    //            user.Location = "890 Folly Rd, Charleston, SC, 29412";
+				//await userManager.CreateAsync(user, "Testtest1");
 
 				//var food = new TotalFood() { Type = "Meat" };
 				//food.UserName = user.UserName;
@@ -32,6 +37,7 @@ namespace testing
 				//var meat = new Meat();
 				//meat.Owner = user;
 				//meat.UserName = user.UserName;
+    //            meat.Name = "T-Bone Big Boy";
 				//context.Meat.Add(meat);
 
 				//var food1 = new TotalFood() { Type = "Meat" };
@@ -89,6 +95,8 @@ namespace testing
 				//dairy1.Owner = user;
 				//dairy1.UserName = user.UserName;
 				//context.Dairy.Add(dairy1);
+
+                context.SaveChanges();
 
 			}
 		}
