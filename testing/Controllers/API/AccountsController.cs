@@ -25,11 +25,10 @@ namespace testing.Controllers.API
         }
 
 		[HttpPost]
-        [Route("~/api/accounts/store/login")]
+        [Route("~/api/accounts/login")]
         public async Task<IActionResult> StoreLogin ([FromBody]LoginRequest model)
 		{
             var user = await UserManager.FindByEmailAsync(model.Email);
-            var storeUser = user.FoodBankUsers.Find(q => q.Email == user.Email);
 
             if (user != null)
             {
@@ -48,29 +47,6 @@ namespace testing.Controllers.API
             }
 		}
 
-        [HttpPost]
-        [Route("~/api/accounts/bank/login")]
-        public async Task<IActionResult> BankLogin ([FromBody]LoginRequest model)
-        {
-            var user = await UserManager.FindByEmailAsync(model.Email);
-
-            if (user != null)
-            {
-                var result = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
-                if (result.Succeeded)
-                {
-                    return Ok(new { IsAuthenticated = true, Name = user.Email });
-                }
-                else
-                {
-                    return Ok(new { IsAuthenticated = false });
-                }
-            }
-            else
-            {
-                return BadRequest();
-            }
-        }
 
    
         [HttpPost]
