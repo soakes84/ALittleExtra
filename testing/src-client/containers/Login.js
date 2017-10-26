@@ -12,17 +12,17 @@ const Box = props => {
   };
   return <div className="box" style={styles} />;
 };
-const LoginWrapper = props => {
-  return (
-    <div className="columns small-12 main-bg grid-x align-center text-center">
-      <div className="header-content columns text-center">
-        <h1 className="logo">a.LittlExtra</h1>
-        <p>Connecting Nonprofits with Local food Sources</p>
-        <button className="button button-round" onClick={props.toggleModal}>Login</button>
-      </div>
-    </div>
-  );
-};
+// const LoginWrapper = props => {
+//   return (
+//     <div className="columns small-12 main-bg grid-x align-center text-center">
+//       <div className="header-content columns text-center">
+//         <h1 className="logo">a.LittlExtra</h1>
+//         <p>Connecting Nonprofits with Local food Sources</p>
+//         <button className="button button-round" onClick={props.toggleModal}>Login</button>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default class Login extends Component {
   constructor(){
@@ -62,13 +62,29 @@ export default class Login extends Component {
             <Box bgColor={colors[0]} width={styles[0].width} />
             <Box bgColor={colors[1]} width={styles[1].width} />
             <Box bgColor={colors[2]} width={styles[2].width} />
-            <LoginWrapper
-              toggleModal={this._toggleModal}
-            />
-            <ModalWrapper
-              showModal={showModal}
-              toggleModal={this._toggleModal}
-            />
+            <div className="columns small-12 main-bg grid-x align-center text-center">
+              <div className="header-content columns text-center">
+                <h1 className="logo">a.LittlExtra</h1>
+                <p>Connecting Nonprofits with Local food Sources</p>
+                <form>
+                  <div className="grid-container">
+                    <div className="grid-x grid-padding-x">
+                      <div className="medium-6 cell">
+                        <label>Email
+                          <input type="email" onChange={this.onChange} placeholder="Email"/>
+                        </label>
+                      </div>
+                      <div className="medium-6 cell">
+                        <label>Password
+                          <input type="password" onChange={this.onChange} placeholder="Password"/>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <button className="button button-round">Login</button>
+                </form>
+              </div>
+            </div>
           </div>
         )}
       </StaggeredMotion>
