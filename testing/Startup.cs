@@ -53,7 +53,7 @@ namespace testing
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            //app.SeedData();
+             //app.SeedData();
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -78,6 +78,41 @@ namespace testing
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //var context = app.ApplicationServices.GetRequiredService<ALittleExtraContext>();
+            //var userManager = app.ApplicationServices.GetRequiredService<UserManager<ApplicationUser>>();
+
+            //var appUser = await userManager.FindByEmailAsync("food@food.com");
+            //if (appUser == null)
+            //{
+                //appUser = new ApplicationUser
+                //{
+                //    Email = "food@food.com",
+                //    UserName = "Foodie123",
+                //    Location = "17A Princess St, Charleston, SC, 29401",
+                //    IsStore = false
+                //};
+                //await userManager.CreateAsync(appUser, "Testtest1");
+
+                //var user = new ApplicationUser
+                //{
+                //    Email = "store@store.com",
+                //    UserName = "Bilo Folly",
+                //    IsStore = true,
+                //    Location = "890 Folly Rd, Charleston, SC, 29412"
+                //};
+                //await userManager.CreateAsync(user, "Testtest1");
+               // context.SaveChanges();
+
+                //var food = new TotalFood() { Type = "Meat" };
+                //food.UserName = user.UserName;
+                //user.TotalFood.Add(food);
+                //var meat = new Meat();
+                //meat.Owner = user;
+                //meat.UserName = user.UserName;
+                //meat.Name = "T-Bone Big Boy";
+                //context.Meat.Add(meat);
+            //}
         }
 
 	   }
