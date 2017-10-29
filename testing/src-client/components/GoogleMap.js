@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import mapStyles from '../styles/mapStyles.json';
 import {
   withGoogleMap,
   GoogleMap,
@@ -15,6 +16,7 @@ const Map = withScriptjs(withGoogleMap(props => {
            style={{width: '200px', height: '200px'}}
            defaultZoom={8}
            defaultCenter={{ lat: -34.397, lng: 150.644 }}
+           defaultOptions={{ styles: mapStyles }}
          >
            <Marker
              position={{ lat: -34.397, lng: 150.644 }}

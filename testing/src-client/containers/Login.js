@@ -3,6 +3,8 @@ import { StaggeredMotion, spring } from "react-motion";
 import axios from 'axios';
 import ModalWrapper from "../components/ModalWrapper";
 
+import Input from '../components/Input';
+
 const colors = ["#39f1c4", "#31ddb3", "#2ccba4"];
 
 const Box = props => {
@@ -32,12 +34,10 @@ export default class Login extends Component {
       password: ''
     }
   }
-  _onEmailChange = (evt) => {
-    this.setState({ email: evt.target.value})
-  }
-
-  _onPasswordChange = (evt) => {
-    this.setState({password: evt.target.value})
+  _onChange = (evt) => {
+    console.log(evt.target.value);
+    const { value, name } = evt.target;
+    this.setState({[name] : value})
   }
   _handleSubmit = (evt) => {
     evt.preventDefault();
@@ -87,14 +87,24 @@ export default class Login extends Component {
                   <div className="grid-container">
                     <div className="grid-x grid-padding-x">
                       <div className="medium-6 cell">
-                        <label>Email
-                          <input value={this.state.email} type="email" onChange={this._onEmailChange} placeholder="Email"/>
-                        </label>
+                        <Input
+                          onChange={this._onChange}
+                          label="Email"
+                          type="email"
+                          name="email"
+                          value={this.state.email}
+                          placeholder="Email"
+                        />
                       </div>
                       <div className="medium-6 cell">
-                        <label>Password
-                          <input value={this.state.password} type="password" onChange={this._onPasswordChange} placeholder="Password"/>
-                        </label>
+                        <Input
+                          placeholder="Password"
+                          onChange={this._onChange}
+                          label="Password"
+                          name="email"
+                          type="password"
+                          value={this.state.password}
+                        />
                       </div>
                     </div>
                   </div>
