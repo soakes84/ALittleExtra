@@ -7,6 +7,7 @@ import Home from './Home';
 export default class App extends Component {
 
   render(){
+    console.log(process);
     return (
       <div className="App">
         <Switch>
