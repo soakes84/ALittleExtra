@@ -9,5 +9,8 @@ namespace testing.Data
         public string Name { get; set; }
         public string UserName { get; set; }
         public DateTime TimeStamp { get; set; }
+        public bool Selected { get; set; }
+        public bool PickedUp { get; set; }
+        public bool Available { get; set; }
     }
 }

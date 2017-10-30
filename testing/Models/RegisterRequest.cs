@@ -18,5 +18,9 @@ namespace testing.Models
         public string Location { get; set; }
         [Required]
         public bool IsStore { get; set; }
+        [Required]
+        public double Longitude { get; set; }
+        [Required]
+        public double Latitude { get; set; }
     }
 }

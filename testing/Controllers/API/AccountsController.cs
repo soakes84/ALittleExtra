@@ -39,7 +39,7 @@ namespace testing.Controllers.API
                     return Ok(new { IsAuthenticated = true, Name = user.UserName, Location = user.Location, Email = user.Email, IsStore = user.IsStore  });
                 }
                 else{
-                    return Ok(new { IsAuthenticated = false });
+                    return BadRequest(new { IsAuthenticated = false });
                 }
             }
             else
@@ -57,6 +57,8 @@ namespace testing.Controllers.API
             user.Email = model.Email;
             user.UserName = model.UserName;
             user.Location = model.Location;
+            user.Latitude = model.Latitude;
+            user.Longitude = model.Longitude;
             user.IsStore = model.IsStore;
 
             if(model.IsStore == true)
@@ -86,8 +88,7 @@ namespace testing.Controllers.API
                 {
                     return BadRequest();
                 }
-            }
-     
+            }  
         }
 
 		[HttpGet]
@@ -101,10 +102,19 @@ namespace testing.Controllers.API
 
         [HttpGet]
         [Route("~/api/accounts/stores")]
-        public IEnumerable<ApplicationUser> GetFoodStores()
+        public IEnumerable<String> GetFoodStores()
         {
-           return _context.Users.Where(q => q.IsStore == true).ToList();
-        
+            var foodStores = new List<String>(); 
+           var stores = _context.Users.Where(q => q.IsStore == true).ToList();
+            foreach(var store in stores)
+            {
+                foodStores.Add(store.UserName);
+                foodStores.Add(store.Location);
+                foodStores.Add(store.Id);
+                foodStores.Add(store.Email);
+            }
+
+            return foodStores;
         }
     }
 }
