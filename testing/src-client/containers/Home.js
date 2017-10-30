@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { API_KEY } from '../secrets';
 import Map from '../components/GoogleMap';
+import { Switch, Route } from 'react-router-dom';
 
 export default class Home extends Component {
   constructor(){
@@ -30,7 +31,11 @@ export default class Home extends Component {
     } else {
       return (
         <div className="home">
-          {this.state.user.name}
+          <Switch>
+            <Route path="/store" component={Storedashboard} />
+            <Route path="/foodbank" component={BankDashboard} />
+          </Switch>
+          {/* {this.state.user.name}
           <div className='store-container'>
             {this.state.stores.map(storeData => {
               return <h3 key={storeData.id}>{storeData.email}</h3>
@@ -42,7 +47,7 @@ export default class Home extends Component {
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
-          />
+          /> */}
         </div>
       )
     }

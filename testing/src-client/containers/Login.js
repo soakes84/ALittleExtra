@@ -47,8 +47,14 @@ export default class Login extends Component {
       password: this.state.password
     })
     .then(response => {
-      window.localStorage.setItem('user', JSON.stringify(response.data))
-      this.props.history.push('/home')
+      const user = response.data;
+      window.localStorage.setItem('user', JSON.stringify(user))
+      if(user.isStore) {
+        this.props.history.push('/home/store')
+
+      } else {
+        this.props.history.push('/home/foodbank')
+      }
     })
     .catch(response => {
       console.log('invalid email');
