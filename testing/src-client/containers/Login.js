@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { StaggeredMotion, spring } from "react-motion";
-
+import axios from 'axios';
 import ModalWrapper from "../components/ModalWrapper";
+
+import Input from '../components/Input';
 
 const colors = ["#39f1c4", "#31ddb3", "#2ccba4"];
 
@@ -12,30 +14,45 @@ const Box = props => {
   };
   return <div className="box" style={styles} />;
 };
-const LoginWrapper = props => {
-  return (
-    <div className="columns small-12 main-bg grid-x align-center text-center">
-      <div className="header-content columns text-center">
-        <h1 className="logo">a.LittlExtra</h1>
-        <p>Connecting Nonprofits with Local food Sources</p>
-        <button className="button button-round" onClick={props.toggleModal}>Login</button>
-      </div>
-    </div>
-  );
-};
+// const LoginWrapper = props => {
+//   return (
+//     <div className="columns small-12 main-bg grid-x align-center text-center">
+//       <div className="header-content columns text-center">
+//         <h1 className="logo">a.LittlExtra</h1>
+//         <p>Connecting Nonprofits with Local food Sources</p>
+//         <button className="button button-round" onClick={props.toggleModal}>Login</button>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default class Login extends Component {
   constructor(){
     super();
     this.state = {
-      showModal: false
+      email: '',
+      password: ''
     }
   }
-  _toggleModal = (evt) => {
+  _onChange = (evt) => {
+    console.log(evt.target.value);
+    const { value, name } = evt.target;
+    this.setState({[name] : value})
+  }
+  _handleSubmit = (evt) => {
     evt.preventDefault();
-    const showModal = !this.state.showModal
-      this.setState({ showModal })
-
+    // 'localhost:8080/login'
+    axios.post('/api/accounts/login', {
+      email: this.state.email,
+      password: this.state.password
+    })
+    .then(response => {
+      window.localStorage.setItem('user', JSON.stringify(response.data))
+      this.props.history.push('/home')
+    })
+    .catch(response => {
+      console.log('invalid email');
+    })
   }
 
   render() {
@@ -62,13 +79,39 @@ export default class Login extends Component {
             <Box bgColor={colors[0]} width={styles[0].width} />
             <Box bgColor={colors[1]} width={styles[1].width} />
             <Box bgColor={colors[2]} width={styles[2].width} />
-            <LoginWrapper
-              toggleModal={this._toggleModal}
-            />
-            <ModalWrapper
-              showModal={showModal}
-              toggleModal={this._toggleModal}
-            />
+            <div className="columns small-12 main-bg grid-x align-center text-center">
+              <div className="header-content columns text-center">
+                <h1 className="logo">a.LittlExtra</h1>
+                <p>Connecting Nonprofits with Local food Sources</p>
+                <form onSubmit={this._handleSubmit}>
+                  <div className="grid-container">
+                    <div className="grid-x grid-padding-x">
+                      <div className="medium-6 cell">
+                        <Input
+                          onChange={this._onChange}
+                          label="Email"
+                          type="email"
+                          name="email"
+                          value={this.state.email}
+                          placeholder="Email"
+                        />
+                      </div>
+                      <div className="medium-6 cell">
+                        <Input
+                          placeholder="Password"
+                          onChange={this._onChange}
+                          label="Password"
+                          name="email"
+                          type="password"
+                          value={this.state.password}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button className="button button-round">Login</button>
+                </form>
+              </div>
+            </div>
           </div>
         )}
       </StaggeredMotion>

@@ -7,6 +7,7 @@
 packages/
 TestResults/
 node_modules
+secrets.js
 # globs
 Makefile.in
 *.DS_Store
