@@ -269,8 +269,6 @@ namespace testing.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
-                    b.Property<int?>("DonatedFoodId");
-
                     b.Property<string>("FoodBankName");
 
                     b.Property<int>("Quantity");
@@ -284,8 +282,6 @@ namespace testing.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("DonatedFoodId");
 
                     b.ToTable("DonatedFood");
                 });
@@ -387,8 +383,6 @@ namespace testing.Migrations
 
                     b.Property<DateTime>("TimeStamp");
 
-                    b.Property<int?>("TotalFoodId");
-
                     b.Property<string>("Type");
 
                     b.Property<string>("UserName");
@@ -396,8 +390,6 @@ namespace testing.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("TotalFoodId");
 
                     b.ToTable("TotalFood");
                 });
@@ -499,10 +491,6 @@ namespace testing.Migrations
                     b.HasOne("testing.Data.ApplicationUser")
                         .WithMany("DonatedFood")
                         .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("testing.Data.DonatedFood")
-                        .WithMany("donatedFood")
-                        .HasForeignKey("DonatedFoodId");
                 });
 
             modelBuilder.Entity("testing.Data.Drinks", b =>
@@ -531,10 +519,6 @@ namespace testing.Migrations
                     b.HasOne("testing.Data.ApplicationUser")
                         .WithMany("TotalFood")
                         .HasForeignKey("ApplicationUserId");
-
-                    b.HasOne("testing.Data.TotalFood")
-                        .WithMany("totalFood")
-                        .HasForeignKey("TotalFoodId");
                 });
 
             modelBuilder.Entity("testing.Data.Vegetables", b =>

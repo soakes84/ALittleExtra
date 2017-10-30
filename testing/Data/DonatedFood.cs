@@ -10,7 +10,6 @@ namespace testing.Data
         public int Quantity { get; set; }
         public string UserName { get; set; }
         public string FoodBankName { get; set; }
-        public virtual List<DonatedFood> donatedFood { get; set; }
         public DateTime TimeStamp { get; set; }
     }
 }

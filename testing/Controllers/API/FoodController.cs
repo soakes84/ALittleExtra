@@ -33,6 +33,14 @@ namespace testing.Controllers.API
             return _context.TotalFood.Where(q => q.PickedUp == true).ToList();
         }
 
+        // all food avail from all stores
+        [HttpGet]
+        [Route("~/api/totalfood/available")]
+        public IEnumerable<TotalFood> GetTotalAvailableFood()
+        {
+            return _context.TotalFood.Where(q => q.Available == true).ToList();
+        }
+
         // all food this logged in store user has donated
         [HttpGet]
         [Route("~/api/totalfood/donated")]
@@ -152,7 +160,7 @@ namespace testing.Controllers.API
         // storeuser posting their food items
         [HttpPost]
         [Route("~/api/food/totalfood")]
-        [Authorize]
+       // [Authorize]
         public async Task<IActionResult> PostFood([FromBody] List<TotalFood> food)
         {
             if (!ModelState.IsValid)
@@ -160,7 +168,7 @@ namespace testing.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            var user = await _userManager.GetUserAsync(User);
+            var user =  await _userManager.GetUserAsync(User);
 
             foreach (var item in food)
             {

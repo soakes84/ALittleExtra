@@ -154,7 +154,6 @@ namespace testing.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ApplicationUserId = table.Column<string>(type: "TEXT", nullable: true),
-                    DonatedFoodId = table.Column<int>(type: "INTEGER", nullable: true),
                     FoodBankName = table.Column<string>(type: "TEXT", nullable: true),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
                     TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
@@ -168,12 +167,6 @@ namespace testing.Migrations
                         name: "FK_DonatedFood_Users_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_DonatedFood_DonatedFood_DonatedFoodId",
-                        column: x => x.DonatedFoodId,
-                        principalTable: "DonatedFood",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -266,7 +259,6 @@ namespace testing.Migrations
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
                     Selected = table.Column<bool>(type: "INTEGER", nullable: false),
                     TimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    TotalFoodId = table.Column<int>(type: "INTEGER", nullable: true),
                     Type = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", nullable: true)
                 },
@@ -277,12 +269,6 @@ namespace testing.Migrations
                         name: "FK_TotalFood_Users_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TotalFood_TotalFood_TotalFoodId",
-                        column: x => x.TotalFoodId,
-                        principalTable: "TotalFood",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -418,11 +404,6 @@ namespace testing.Migrations
                 column: "ApplicationUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DonatedFood_DonatedFoodId",
-                table: "DonatedFood",
-                column: "DonatedFoodId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Drinks_OwnerId",
                 table: "Drinks",
                 column: "OwnerId");
@@ -452,11 +433,6 @@ namespace testing.Migrations
                 name: "IX_TotalFood_ApplicationUserId",
                 table: "TotalFood",
                 column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TotalFood_TotalFoodId",
-                table: "TotalFood",
-                column: "TotalFoodId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
