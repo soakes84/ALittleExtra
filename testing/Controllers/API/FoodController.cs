@@ -169,6 +169,7 @@ namespace testing.Controllers.API
             }
 
               var user = await _userManager.GetUserAsync(User);
+            var usr =  _userManager.GetUserId(User);
 
             foreach (var item in food)
             {

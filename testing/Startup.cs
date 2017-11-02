@@ -43,6 +43,8 @@ namespace testing
 					options.Password.RequireDigit = false;
 					options.Password.RequireNonAlphanumeric = false;
 					options.Password.RequiredLength = 2;
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+. ";
+
 				})
 				.AddEntityFrameworkStores<ALittleExtraContext>()
 				.AddDefaultTokenProviders();
