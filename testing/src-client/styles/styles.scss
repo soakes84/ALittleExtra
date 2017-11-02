@@ -1,8 +1,12 @@
+@import "./_variables.scss";
 @import "./_typography.scss";
 @import "./_animations.scss";
 @import "./_modal.scss";
 .main-bg {
   background: #27b894;
+}
+.button {
+  margin: 0;
 }
 .button-round {
   border: none;
@@ -12,14 +16,32 @@
     rgba(20, 98, 255, 1) 0%,
     rgba(63, 81, 181, 1) 100%
   );
+  &:hover{
+    background: linear-gradient(
+      to top,
+      rgba(20, 98, 255, 1) 0%,
+      rgba(63, 81, 181, 1) 100%
+    );
+  }
+  transition: background .3s;
 }
-label {
-  position: relative;
-  color: #FFF;
+// .autocomplete-container{
+//   overflow: scroll;
+//   max-height: 300px;
+//   background: green;
+// }
+
+.login-form{
+  h4{
+    font-size: 1em;
+    margin: 0;
+  }
 }
-label:focus {
-  color: green;
+.input-required{
+  color: $Red;
+  border-color: $Red;
 }
+
 input:focus::-webkit-input-placeholder {
   transition: all 0.3s;
   color: transparent;

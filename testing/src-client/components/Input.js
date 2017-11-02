@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Input = props => {
-  const { label, className, type, value, onChange, placeholder, name } = props;
+  const { label, className, type, value, onChange, placeholder, name, required } = props;
   return (
     <label>
       {label}
+      <span className="input-required">{required ? '*' : ''}</span>
       <input
         name={name}
-        className={className}
+        className={className + (required && !value.length ? "input-required" : '')}
         value={value}
         type={type}
         onChange={onChange}

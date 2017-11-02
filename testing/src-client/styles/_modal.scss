@@ -8,12 +8,16 @@
   z-index: 10;
 }
 .modal-content {
+  color: #000;
   position: absolute;
+  padding: 2em;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
-  height: 100px;
   background: #FFF;
   z-index: 1000;
+  // animation: slideFromTop 1s;
+  .modal-header{
+    color: $MainGreen;
+  }
 }
