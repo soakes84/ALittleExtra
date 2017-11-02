@@ -160,7 +160,7 @@ namespace testing.Controllers.API
         // storeuser posting their food items
         [HttpPost]
         [Route("~/api/food/totalfood")]
-       // [Authorize]
+        //[Authorize]
         public async Task<IActionResult> PostFood([FromBody] List<TotalFood> food)
         {
             if (!ModelState.IsValid)
@@ -168,7 +168,7 @@ namespace testing.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            var user =  await _userManager.GetUserAsync(User);
+              var user = await _userManager.GetUserAsync(User);
 
             foreach (var item in food)
             {

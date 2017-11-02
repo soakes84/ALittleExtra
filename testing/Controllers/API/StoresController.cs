@@ -39,7 +39,15 @@ namespace testing.Controllers.API
 
             return foodStores;
         }
-        
+
+        [HttpGet]
+        [Route("~/api/stores/selectedfood")]
+        public IEnumerable<TotalFood> GetSelectedFood()
+        {
+            var userName = _userManager.GetUserName(User);
+            return _context.TotalFood.Where(q => q.UserName == userName && q.Selected == true).ToList();
+        }
+
         [HttpGet]
         [Route("~/api/stores/")]
         public IEnumerable<string> Get()
