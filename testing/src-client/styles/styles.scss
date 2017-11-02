@@ -25,6 +25,11 @@
   }
   transition: background .3s;
 }
+// .autocomplete-container{
+//   overflow: scroll;
+//   max-height: 300px;
+//   background: green;
+// }
 
 .login-form{
   h4{
@@ -37,9 +42,6 @@
   border-color: $Red;
 }
 
-label:focus {
-  color: green;
-}
 input:focus::-webkit-input-placeholder {
   transition: all 0.3s;
   color: transparent;
