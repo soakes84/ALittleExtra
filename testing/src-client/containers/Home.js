@@ -31,10 +31,6 @@ export default class Home extends Component {
     } else {
       return (
         <div className="home">
-          <Switch>
-            <Route path="/store" component={Storedashboard} />
-            <Route path="/foodbank" component={BankDashboard} />
-          </Switch>
           {/* {this.state.user.name}
           <div className='store-container'>
             {this.state.stores.map(storeData => {
